@@ -1,0 +1,53 @@
+.g-page-scroll{
+	height: 100%;
+	padding-bottom: 120rpx;
+	.nav-bar{
+		padding:28rpx;
+		padding-bottom: 20rpx;
+		background: #fff;
+		.title{
+			margin-top: 50px;
+			height: 40rpx;
+			font-size: 38rpx;
+			margin-bottom: 20rpx;
+			transition: all 500ms;
+			overflow: hidden;
+		}
+		.nav-bar-wrap{
+			display: flex;
+			width: 100%;
+			border:2px solid #17c776;
+			border-radius: 60rpx;
+			transition: width 500ms;
+		}
+		.ipt{
+			flex: 1;
+			height: 70rpx;
+			line-height: 70rpx;
+			text-indent: 20rpx;
+		}
+		.iconfont-search:before{
+			font-family: 'iconfont';
+			content: '\e632';
+		}
+		.g-btn{
+			padding:0 40rpx;
+			text-align: center;
+			background: #17c776;
+			color: #fff;
+			font-size: 32rpx;
+			border-radius: 80rpx;
+			height: 70rpx;
+			line-height: 70rpx;
+		};
+		&.min{
+			.title{
+				margin-top: 40rpx;
+				height: 0;
+			}
+			.nav-bar-wrap{
+				width: 60%;
+			}
+		}
+	}
+}

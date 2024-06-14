@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT"> 
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 	
+	<meta HTTP-EQUIV="expires" CONTENT="0">
+	<title>API List</title>
+	<style>
+		body{padding:0;margin:0;background-color: #eee;}
+		.wrap{padding:50px; font-size: 14px; color:#999;}
+		.title{font-size: 20px;}
+		.list{display: flex; flex-wrap:wrap; justify-content: flex-start; width: 100%; }
+		.item{ margin:10px;  padding:20px; width: 30%; background: #fff; border-radius:10px; box-sizing: border-box;}
+		.item .h1{font-size: 16px; color:#000;}
+		.item a{margin:auto 5px; color:#001fff}
+		.item span{padding:5px 10px; border:1px solid #ddd; border-radius: 5px; color:#999;}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="title">API List</div>
+		<div class="list">
+			<div class="item">
+				<p class="h1">页面配置</p>
+				<p>url:<a href="/api/pagesetting?type=home">pagesetting</a></p>
+				<p>参数:<span>type[string]:home/procure</span></p>
+			</div>
+			
+			<div class="item">
+				<p class="h1">获取门店列表</p>
+				<p>url:<a href="/api/getshoplist?enabled=1">get shop list</a></p>
+				<p>参数:<span>enabled[number]:0/1</span></p>
+			</div>
+			
+			<div class="item">
+				<p class="h1">获取门店详情</p>
+				<p>url:<a href="/api/getshopinfo?id=1">get shop info</a></p>
+				<p>参数:<span>id[number]</span></p>
+			</div>
+			
+			<div class="item">
+				<p class="h1">获取分类</p>
+				<p>url:<a href="/api/getcategory?id=1">get category</a></p>
+				<p>参数:<span>id[number]</span></p>
+			</div>
+			
+			<div class="item">
+				<p class="h1">获取产品列表</p>
+				<p>url:<a href="/api/getproductlist?cid=1">get product list</a></p>
+				<p>参数:<span>id[number]</span></p>
+			</div>
+			
+			<div class="item">
+				<p class="h1">获取产品详情</p>
+				<p>url:<a href="/api/getproduct?id=1">get product</a></p>
+				<p>参数: <span>id[number]</span> </p>
+			</div>
+			
+			<div class="item">
+				<p class="h1">获取茶叶行情</p>
+				<p>url:<a href="/api/getmarkettea?shop_id=1">get market tea</a></p>
+				<p>参数: <span>shop_id[number]</span> </p>
+			</div>
+			<div class="item">
+				<p class="h1">登录</p>
+				<p>url:<a href="/api/login?code=1">get wx login</a></p>
+				<p>参数: <span>code[string]</span> </p>
+			</div>
+			<div class="item">
+				<p class="h1">用户注册</p>
+				<p>url:<a href="/api/register">user register</a></p>
+				<p>参数: <span>-</span> </p>
+			</div>
+			<div class="item">
+				<p class="h1">获取用户信息</p>
+				<p>url:<a href="/api/getuserinfo">get user info</a></p>
+				<p>参数: < <span>headers.Authorization</span> </p>
+			</div>
+			<div class="item">
+				<p class="h1">更新用户信息</p>
+				<p>url:<a href="/api/getuserinfo">post updata user info</a></p>
+				<p>参数: <span>headers.Authorization</span> </p>
+			</div>
+			
+			
+			
+			
+		</div>
+	</div>
+<script>
+	
+</script>
+</body>
+</html>

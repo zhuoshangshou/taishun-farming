@@ -1,0 +1,24 @@
+.g-back-bar{
+	position: absolute;
+	top: 30rpx;
+	left: 0;
+	z-index: 8;
+	padding:0 24rpx;
+	transition: all 200ms;
+	.icon-font{
+		color: #fff;
+		font-size: 54rpx;
+		font-family: 'iconfont';
+		&.iconfont-back:before{
+			content: '\e6ad';
+		}
+		&.iconfont-home:before{
+			content: '\e7e4';
+		}
+	}
+	&.dark{
+		.icon-font{
+			color: #5a6a65
+		}
+	}
+}

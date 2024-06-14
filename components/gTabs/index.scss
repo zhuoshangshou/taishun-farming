@@ -1,0 +1,19 @@
+.g-tabs{
+	position: relative;
+	z-index: 2;
+	display: flex;
+	margin-top: -40rpx;
+	border-top-left-radius: 20rpx;
+	border-top-right-radius: 20rpx;
+	background: #fff;
+	overflow: auto;
+	.item{
+		padding:40rpx 30rpx;
+		text-align: center;
+		color: $uni-text-color-grey;
+		white-space:nowrap;
+		&.act{
+			color: $uni-color-primary;
+		}
+	}
+}

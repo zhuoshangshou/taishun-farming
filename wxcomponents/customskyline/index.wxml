@@ -1,0 +1,20 @@
+<vertical-drag-gesture-handler worklet:ongesture="handleVerticalDrag">
+	<scroll-view class="g-page-scroll" type="custom" scroll-y="{{true}}" refresher-enabled="{{true}}" :show-scrollbar="{{false}}" lower-threshold="{{50}}" bindscrolltolower="fetchList" bindrefresherrefresh="resetPageFetch" bindscroll="handleScroll">
+		<sticky-header>
+			<view class="nav-bar">
+				<view class="title">
+					<text>泰顺三农</text>
+				</view>
+				<view class="nav-bar-wrap">
+					<input class="ipt" v-model="searchText" type="text" placeholder="请输入搜索名称" />
+					<button class="g-btn" bindtap="handleSearch">
+						<text class="icon-font iconfont-search"></text>
+					</button>
+				</view>
+			</view>
+		</sticky-header>
+		<sticky-section>
+			<slot></slot>
+		</sticky-section>
+	</scroll-view>
+</vertical-drag-gesture-handler>

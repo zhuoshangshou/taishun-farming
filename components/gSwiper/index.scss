@@ -1,0 +1,21 @@
+.g-banner{
+	color: $uni-text-color-inverse;
+	.wrap{
+		position: relative;
+		&.default{
+			height: 400rpx;
+			background: $uni-color-primary;
+		}
+		.pic{
+			width: 100%;
+		}
+		.swiperbar{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 2;
+			height: 100%;
+		}
+	}
+}

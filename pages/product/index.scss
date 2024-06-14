@@ -1,0 +1,84 @@
+.content-box{
+	position: relative;
+	background: #fff;
+	.picture{
+		.pic{
+			width: 100%;
+		}
+	}
+	.back-bar{
+		position: relative;
+		z-index: 4;
+	}
+	.video{
+		line-height: 0;
+	}
+	.base-info{
+		position: relative;
+		padding:40rpx 24rpx;
+		.title{
+			font-size: 40rpx;
+		}
+		.subtitle{
+			margin: 20rpx 0;
+		}
+		.info{
+			padding:28rpx 0;
+			.text{
+				display: flex;
+				line-height: 2;
+				font-size: 28rpx;
+				color: $uni-text-color-grey;
+			}
+		}
+		.num-bar{
+			margin-bottom: 40rpx;
+			.txt{
+				color: $uni-text-color-grey;
+				font-size: 24rpx;
+			}
+			.num{
+				display: flex;
+				align-items:baseline;
+				margin-top: 24rpx;
+				font-size: 48rpx;
+				color: $uni-color-primary;
+				.unit{
+					margin-left: 10rpx;
+					font-size: 28rpx;
+				}
+				.price{
+					&:before{
+						content: '￥';
+						font-size: 32rpx;
+					}
+				}
+			}
+		}
+	}
+	.details{
+		padding-bottom: 100rpx;
+		.desc{
+			padding:0 28rpx 40rpx 28rpx;
+			font-size: 24rpx;
+		}
+	}
+	.btn-bar.fixed{
+		width: 100%;
+		.g-btn{
+			border-radius: 0;
+			padding-bottom: 10px;
+		}
+	}
+	.sk-chase{
+		height: 100vh;
+		display: flex;
+		align-items: center;
+	}
+	.g-page-scroll{
+		height: calc(100% - 114rpx);
+	}
+	&.half{
+		height: 80vh;
+	}
+}

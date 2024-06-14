@@ -1,0 +1,56 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: 'iconfont';  /* Project id 4524637 */
+  src: url('//at.alicdn.com/t/c/font_4524637_o8tucy27jmi.woff2?t=1716958949089') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4524637_o8tucy27jmi.woff?t=1716958949089') format('woff'),
+       url('//at.alicdn.com/t/c/font_4524637_o8tucy27jmi.ttf?t=1716958949089') format('truetype');
+}
+.icon-font:before{
+	font-family: 'iconfont';
+}
+
+.iconfont-mobile:before{
+	content: '\e633';
+}
+
+.iconfont-back:before{
+	content: '\e6ad';
+}
+
+.iconfont-home:before{
+	content: '\e7e4';
+}
+
+.iconfont-address:before{
+	content: '\e61f';
+}
+
+view{
+	font-family: arial;
+}
+
+.content-box{
+	height: 100vh;
+}
+
+.g-page-scroll{
+	height: 100%;
+}
+
+.page-content-box{
+	position: relative;
+}
+.g-video{
+	width: 100%;
+}
+
+.g-btn{
+	padding:10rpx 20rpx;
+	text-align: center;
+	background: $uni-color-primary;
+	color: $uni-text-color-inverse;
+	font-size: 32rpx;
+	width: 100%;
+	border-radius: 80rpx;
+	border:none;
+}

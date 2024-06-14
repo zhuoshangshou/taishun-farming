@@ -1,0 +1,48 @@
+.g-tabs-bar{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 4;
+	display: flex;
+	background: #fff;
+	border-top: 1px solid #ddd;
+	.item{
+		padding:20rpx 30rpx 40rpx;
+		text-align: center;
+		color: $uni-text-color-grey;
+		white-space:nowrap;
+		flex: 1;
+		.text{
+			font-size: 24rpx;
+		}
+		.icon-font{
+			display: block;
+			font-size: 44rpx;
+			font-family: 'iconfont';
+			margin-bottom: 6rpx;
+			&.iconfont-wholesale:before{
+				content: '\e65e';
+			}
+			&.iconfont-procure:before{
+				content: '\e749';
+				font-size: 48rpx;
+			}
+			&.iconfont-contact:before{
+				content: '\e628';
+				font-size: 54rpx;
+			}
+			&.iconfont-market:before{
+				content: '\e6a9';
+			}
+			&.iconfont-member:before{
+				content: '\e6c8';
+				font-size: 38rpx;
+			}
+			
+		}
+		&.act{
+			color: $uni-color-primary;
+		}
+	}
+}

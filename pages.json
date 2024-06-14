@@ -1,0 +1,76 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "批发服务",
+				"disableScroll":true ,// Skyline 不支持页面全局滚动
+				"navigationStyle":"custom" //Skyline 不支持原生导航栏
+			}
+		},
+		{
+			"path": "pages/procure/index",
+			"style": {
+				"navigationBarTitleText": "采购服务",
+				"disableScroll":true ,// Skyline 不支持页面全局滚动
+				"navigationStyle":"custom" //Skyline 不支持原生导航栏
+			}
+		},
+		{
+			"path": "pages/market/index",
+			"style": {
+				"navigationBarTitleText": "茶叶行情",
+				"navigationStyle":"custom",
+				"renderer":"webview"
+			}
+		},
+		{
+			"path": "pages/market/shop",
+			"style": {
+				"navigationBarTitleText": "茶商详情",
+				"navigationStyle":"custom",
+				"renderer":"webview"
+			}
+		},
+		{
+			"path": "pages/contact/index",
+			"style": {
+				"navigationBarTitleText": "联系我们",
+				"navigationStyle":"custom"
+				//"renderer":"webview"
+			}
+		},
+		{
+			"path": "pages/member/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationStyle":"custom",
+				"renderer":"webview"
+			}
+		},
+		{
+			"path": "pages/product/index",
+			"style": {
+				"navigationBarTitleText": "详情",
+				//"renderer":"webview",
+				"disableScroll":true ,// Skyline 不支持页面全局滚动
+				"navigationStyle":"custom" //Skyline 不支持原生导航栏
+			}
+		},
+		{
+			"path": "pages/list/index",
+			"style": {
+				"navigationBarTitleText": "列表",
+				"disableScroll":true ,// Skyline 不支持页面全局滚动
+				"navigationStyle":"custom" //Skyline 不支持原生导航栏
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "泰顺三农",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

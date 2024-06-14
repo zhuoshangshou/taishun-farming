@@ -1,0 +1,52 @@
+.item{
+	display: flex;
+	padding:20rpx;
+	.picture{
+		width: 25%;
+		line-height: 0;
+		.pic{
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.info-bar{
+		position: relative;
+		width: 70%;
+		padding-left: 20rpx;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		.desc{
+			display: flex;
+			justify-content: space-between;
+			color: $uni-text-color-grey;
+			font-size: 24rpx;
+			line-height: 2;
+			.iconfont-mobile{
+				font-family: 'iconfont';
+				&:before{
+					content: '\e633';
+				}
+			}
+		}
+		.num-bar{
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 40rpx;
+			display: flex;
+			justify-content: center;
+			align-items: flex-end;
+			flex-direction: column;
+			.txt{
+				color: $uni-text-color-grey;
+				font-size: 24rpx;
+			}
+			.num{
+				margin-top: 10rpx;
+				font-size: 32rpx;
+				color: $uni-color-primary;
+			}
+		}
+	}
+	}

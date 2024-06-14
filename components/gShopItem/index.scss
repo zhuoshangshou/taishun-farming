@@ -1,0 +1,10 @@
+.g-shop-bar{
+	padding:20rpx;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 10rpx;
+	&.active{
+		background-color: $uni-color-primary;
+		color: #fff;
+	}
+}
