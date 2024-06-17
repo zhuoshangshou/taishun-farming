@@ -27,7 +27,7 @@ app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type')
     res.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
     res.header('Access-Control-Allow-Credentials', true);
-    res.header("Content-Type", "application/json;charset=utf-8");
+    //res.header("Content-Type", "application/json;charset=utf-8"); //  加了index.html 就变成json了
     next()
 })
 
@@ -50,7 +50,12 @@ app.get('/api/pagesetting', (req, res) => {
   }
   console.log('pagesetting sql',sql)
   connection.query(sql, (error, results, fields) => {
-    if (error) throw error;
+    //if (error) throw error;
+	if (error) {
+		var falt_results = {message:'获取页面配置',...error}
+		res.send(falt_results);
+		return false;
+	}
 	var falt_results = {message:'页面配置',code:200,list:results}
     res.send(falt_results);
   });
@@ -67,7 +72,11 @@ app.get('/api/getshoplist', (req, res) => {
   }
   console.log('getshoplist sql',sql)
   connection.query(sql, (error, results, fields) => {
-    if (error) throw error;
+    if (error) {
+    	var falt_results = {message:'获取门店信息',...error}
+    	res.send(falt_results);
+    	return false;
+    }
 	var falt_results = {message:'门店信息',code:200,list:results}
     res.send(falt_results);
   });
@@ -85,11 +94,15 @@ app.get('/api/getshopinfo', (req, res) => {
   console.log('getshopinfo sql',sql)
   connection.query(sql, (error, results, fields) => {
 	var res_data = {}
-    if (error) throw error;
+    if (error) {
+    	var falt_results = {message:'获取联系我们信息',...error}
+    	res.send(falt_results);
+    	return false;
+    }
 	if(results && results.length){
 		res_data = results[0]
 	}
-	var falt_results = {message:'门店信息',code:200,data:res_data}
+	var falt_results = {message:'获取联系我们信息',code:200,data:res_data}
     res.send(falt_results);
   });
 });
@@ -105,7 +118,11 @@ app.get('/api/getcategory', (req, res) => {
   }
   console.log('getcategory sql',sql)
   connection.query(sql, (error, results, fields) => {
-    if (error) throw error;
+    if (error) {
+    	var falt_results = {message:'获取分类',...error}
+    	res.send(falt_results);
+    	return false;
+    }
 	var falt_results = {message:'获取分类',code:200,list:results}
     res.send(falt_results);
   });
@@ -124,7 +141,11 @@ app.get('/api/getproductlist', (req, res) => {
   }
   console.log('getproductlist sql',sql)
   connection.query(sql, (error, results, fields) => {
-    if (error) throw error;
+    if (error) {
+    	var falt_results = {message:'获取产品列表',...error}
+    	res.send(falt_results);
+    	return false;
+    }
 	var falt_results = {message:'获取产品列表',code:200,list:results}
     res.send(falt_results);
   });
@@ -140,7 +161,11 @@ app.get('/api/getproduct', (req, res) => {
   }
   console.log('getproduct sql',sql)
   connection.query(sql, (error, results, fields) => {
-    if (error) throw error;
+    if (error) {
+    	var falt_results = {message:'获取产品',...error}
+    	res.send(falt_results);
+    	return false;
+    }
 	var falt_results = {message:'获取产品',code:200,data:results}
     res.send(falt_results);
   });
@@ -156,7 +181,11 @@ app.get('/api/getmarkettea', (req, res) => {
   }
   console.log('getproduct sql',sql)
   connection.query(sql, (error, results, fields) => {
-    if (error) throw error;
+    if (error) {
+    	var falt_results = {message:'获取行情',...error}
+    	res.send(falt_results);
+    	return false;
+    }
 	var falt_results = {message:'获取产品',code:200,data:results}
     res.send(falt_results);
   });
@@ -180,7 +209,11 @@ app.get('/api/login', async (req, res) => {
 			showErrMsg = false;
 			console.log('login sql',sql)
 			connection.query(sql, (error, results, fields) => {
-				if (error) throw error;
+				if (error) {
+					var falt_results = {message:'登录成功',...error}
+					res.send(falt_results);
+					return false;
+				}
 				if(results.length){
 					var token = uitls.creationToken(results[0].openid+'&taishun&'+results[0].mobile);
 					wxres = {message:'登录成功',code:200,data:{token}}
@@ -233,7 +266,11 @@ app.get('/api/getuserinfo', (req, res) => {
   console.log('getuserinfo sql',sql)
   connection.query(sql, (error, results, fields) => {
     var res_data = {}
-    if (error) throw error;
+    if (error) {
+    	var falt_results = {message:'用户信息',...error}
+    	res.send(falt_results);
+    	return false;
+    }
     if(results && results.length){
     	res_data = results[0]
     }
@@ -246,14 +283,36 @@ app.get('/api/getuserinfo', (req, res) => {
 // API端点：更新用户信息
 app.post('/api/upuserinfo', (req, res) => {
   //console.log('upuserinfo req',req)
+  var {authorization} = req.headers;
   var {id,openid,mobile,name,portrait} = req.body;
-  var sql = `UPDATE users SET name = '${name}', mobile = '${mobile}', portrait = '${portrait}' WHERE id ='${id}' AND openid = '${openid}'`;
-  console.log('getproduct sql',sql)
-  connection.query(sql, (error, results, fields) => {
-    if (error) throw error;
-  	var falt_results = {message:'更新用户信息',code:200,data:results}
-    res.send(falt_results);
-  });
+  var sql = `UPDATE users SET name = '${name}', mobile = '${mobile}', portrait = '${portrait}'`;
+  if(authorization){
+	//console.log('authorization',authorization)
+	let token_str = authorization.match(/Bearer (\S*)/)[1];
+	let token_openid = uitls.decodeToken(token_str)
+	//console.log('token_str',token_openid,token_str)
+	sql = `${sql} WHERE openid='${token_openid}'`;  
+  }else{
+	res.send({errmsg:'未登录',code:-1});
+	return false;
+  }
+  
+  console.log('upuserinfo sql',sql);
+  try{
+	  connection.query(sql, (error, results, fields) => {
+	    if (error) {
+			var falt_results = {message:'更新用户信息',...error}
+			res.send(falt_results);
+			return false;
+		}
+	  	var falt_results = {message:'更新用户信息',code:200,data:results}
+	    res.send(falt_results);
+	  });
+  }catch(err){
+	  var falt_results = {message:'更新用户信息',code:-1}
+	  res.send(falt_results);
+  }
+  
 }); 
 
 // 
