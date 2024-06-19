@@ -6,7 +6,8 @@
                 "env": {
                     "UNI_PLATFORM": "mp-weixin",
                     "BASE_API_URL_mock": "https://console-mock.apipost.cn/mock/e9c86bb9-924a-4dd7-a297-9ea88c6a156c",
-                    "BASE_API_URL": "http://127.0.0.1:3000/api"
+                    "BASE_API_URL": "http://127.0.0.1:3000/api",
+					"BASE_SOCKET_URL": "ws://127.0.0.1:3000/msg"
                 },
                 "define": {
                     "CUSTOM-CONST": true
@@ -16,7 +17,8 @@
                 "title": "微信小程序-生产",
                 "env": {
                     "UNI_PLATFORM": "mp-weixin",
-                    "BASE_API_URL": "http://36.111.172.157:3000/api"
+                    "BASE_API_URL": "http://36.111.172.157:3000/api",
+					"BASE_SOCKET_URL": "ws://36.111.172.157:3000/msg"
                 },
                 "define": {
                     "CUSTOM-CONST": true

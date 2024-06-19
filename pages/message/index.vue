@@ -7,7 +7,7 @@
 			</view>
 		</scroll-view>
 		<view class="foot-wrap" v-if="showFoot">
-			<input class="ipt" type="textarea" v-model="msg" placeholder="请输入" />
+			<input class="ipt" type="textarea" v-model="msg" placeholder="请输入" @confirm="handleSend" />
 			<view class="btn-bar">
 				<button class="g-btn" @click="handleSend">发送</button>
 			</view>
@@ -50,7 +50,7 @@
 						return false;
 					}
 					var option = {
-						url: 'ws://127.0.0.1:3000/msg',
+						url: process.env.BASE_SOCKET_URL,
 						header:{
 							'content-type': 'application/json',
 							'Authorization':'Bearer ' + token,

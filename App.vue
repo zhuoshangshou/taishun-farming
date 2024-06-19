@@ -5,7 +5,8 @@
 			var env_option = {
 				env:process.env.NODE_ENV,
 				platform:process.env.UNI_PLATFORM,
-				api_url:process.env.BASE_API_URL
+				api_url:process.env.BASE_API_URL,
+				web_socket_url:process.env.BASE_SOCKET_URL
 			}
 			console.log('APP onLaunch',env_option)
 		},
