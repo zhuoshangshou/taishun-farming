@@ -7,7 +7,7 @@
 						<view class="name">{{userInfo.name}}</view>
 						<view class="mobile">{{userInfo.mobile}}</view>
 					</view>
-					<view class="portrait">
+					<view class="portrait" v-if="userInfo.portrait">
 						<image :src="userInfo.portrait" mode="widthFix" show-menu-by-longpress class="pic"></image>
 					</view>
 				</view>

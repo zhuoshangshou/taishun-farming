@@ -5,10 +5,11 @@
 	right: 0;
 	z-index: 4;
 	display: flex;
+	align-items: flex-end;
 	background: #fff;
 	border-top: 1px solid #ddd;
 	.item{
-		padding:20rpx 30rpx 40rpx;
+		padding:20rpx 0 40rpx;
 		text-align: center;
 		color: $uni-text-color-grey;
 		white-space:nowrap;
@@ -18,6 +19,8 @@
 		}
 		.icon-font{
 			display: block;
+			height: 50rpx;
+			line-height: 50rpx;
 			font-size: 44rpx;
 			font-family: 'iconfont';
 			margin-bottom: 6rpx;

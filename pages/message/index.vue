@@ -1,11 +1,12 @@
 <template>
 	<view class="content-box">
 		<scroll-view class="g-page-scroll" type="list" :scroll-y="true" :show-scrollbar="false">
+			<view class="tips" v-if="!showFoot">{{tips}}</view>
 			<view class="item" v-for="(item,index) in dialogue" :key="index">
 				<view class="wrap">{{item.msg}}</view>
 			</view>
 		</scroll-view>
-		<view class="foot-wrap">
+		<view class="foot-wrap" v-if="showFoot">
 			<input class="ipt" type="textarea" v-model="msg" placeholder="请输入" />
 			<view class="btn-bar">
 				<button class="g-btn" @click="handleSend">发送</button>
@@ -26,8 +27,10 @@
 		data() {
 			return {
 				loading:true,
+				showFoot:false,
 				socketTask: null,
 				dialogue:[],
+				tips:'~未登录~',
 				msg:''
 			}
 		},
@@ -41,6 +44,7 @@
 			async pageFetch(){
 				try{
 					var token = uni.getStorageSync('token');
+					var that = this;
 					if(!token){
 						console.log('请登录')
 						return false;
@@ -53,9 +57,11 @@
 						},
 						timeout:3000
 					}
+					
 					const socketTask = wx.connectSocket(option);
 					socketTask.onOpen((res)=>{
 						console.log('onOpen',res)
+						that.$data.showFoot = true;
 					})
 					socketTask.onMessage((res)=>{
 						console.log('onMessage',res)
@@ -66,9 +72,13 @@
 					})
 					socketTask.onClose((res)=>{
 						console.log('onClose',res)
+						that.$data.showFoot = false;
+						that.$data.tips = '~已退出~';
 					})
 					socketTask.onError((res)=>{
 						console.log('onError',res)
+						that.$data.showFoot = false;
+						that.$data.tips = res.errMsg || 'socketTask Error';
 					})
 					
 					this.$data.socketTask = socketTask;
