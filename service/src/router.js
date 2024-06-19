@@ -1,6 +1,9 @@
 const axios = require('axios');
 const mysql = require('mysql');
 const express = require('express');
+const COS = require('cos-nodejs-sdk-v5');
+const multiparty = require('multiparty');
+
 // 创建路由对象
 const router = express.Router();
 
@@ -17,6 +20,23 @@ const connection = mysql.createConnection({
 });
 // 连接数据库
 connection.connect();
+
+//储存到本地uploads 目录
+//const multer  = require('multer');
+// 设置存储配置
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+// 		//console.log('storage destination', file)
+//         cb(null, 'uploads/') // 确保这个文件夹已经存在
+//     },
+//     filename: function (req, file, cb) {
+// 		let mimetype= '.'+file.mimetype.split('/')[1];
+// 		//console.log('storage filename', mimetype,file)
+//         cb(null, file.fieldname + '-' + Date.now()+mimetype)
+//     }
+// })
+// const upload = multer({ storage: storage });
+
 
 // 
 const commonUitls = {
@@ -281,6 +301,8 @@ router.get('/getuserinfo', (req, res) => {
     if (error) {
     	var falt_results = {message:'用户信息',...error}
     	res.send(falt_results);
+		console.log('getuserinfo destroy')
+		connection.destroy();
     	return false;
     }
     if(results && results.length){
@@ -327,17 +349,87 @@ router.post('/upuserinfo', (req, res) => {
   
 }); 
 
-var expressWs = require('express-ws');
-expressWs(router);
 
-router.ws('/msg', function (ws, req){
-// 返回给客户端
-  ws.send('连接成功')
 
- ws.on('message', function (msg) {
-	 console.log('message',msg)
- })
-})
+//图片上传upload.single('file_portrait'),
+router.post('/upcosfiles',(req, res) => {
+  //console.log('upuserinfo req',req)
+  //var {filepath,filename} = req.file;
+  try{
+	var sql = `SELECT * FROM third_information WHERE platform = 'tencent_cos'`;
+	connection.query(sql, (error, results, fields) => {
+		if (error) {
+			var falt_results = {message:'未找到 tencent_cos 数据',...error}
+			res.send(falt_results);
+			return false;
+		}
+		
+		const platforminfo = results[0];
+		const Bucket = platforminfo.bucket;  /* 存储桶，必须字段 */
+		const Region = platforminfo.region;     /* 存储桶所在地域，必须字段 */
+		const form = new multiparty.Form()
+		var filename = null;
+		var filebase64 = null;
+		// SECRETID 和 SECRETKEY 请登录 https://console.cloud.tencent.com/cam/capi 进行查看和管理
+		var cos = new COS({
+		    SecretId: platforminfo.SecretId,
+		    SecretKey: platforminfo.SecretKey,
+		});
+		//console.log('platforminfo',platforminfo)
+		//const fileObject = req.file;
+		// if(!fileObject){
+		// 	console.log('upuserinfo !fileObject',req)
+		// 	return false;
+		// }
+		//console.log('upuserinfo req',fileObject)
+		form.parse(req,(err,fields,file)=>{
+			//console.log('formData',fields)
+			filebase64 = fields.filebase[0];
+			filename = fields.filename[0];
+			
+			//列出目录 / 的所有文件
+			// cos.getBucket({
+			//     Bucket: Bucket, /* 填入您自己的存储桶，必须字段 */
+			//     Region: Region,  /* 存储桶所在地域，例如ap-beijing，必须字段 */
+			//     //Prefix: '/',           /* Prefix表示列出的object的key以prefix开始，非必须 */
+			// }, function(err, data) {
+			// 	var resdata = err || data.Contents
+			//     console.log('resdata',resdata);
+				
+			// 	var falt_results = {message:'列出目录文件',code:200,data:resdata}
+			// 	res.send(falt_results);
+			// });
+			var body_base = Buffer.from(filebase64, 'base64');
+			var putoption = {
+			    Bucket:Bucket, 
+			    Region:Region,  
+			    Key: 'images/'+filename, /* 存储在桶里的对象键（例如1.jpg，a/b/test.txt），必须字段 */
+				StorageClass: 'STANDARD',/* 当 Body 为 stream 类型时，ContentLength 必传，否则 onProgress 不能返回正确的进度信息 */
+			    Body: body_base, // 上传文件对象
+			    // onProgress: function(progressData) { /*进度的回调函数*/
+			    //     console.log('onProgress',JSON.stringify(progressData));
+			    // }
+			}
+			//console.log('cos putoption',putoption);
+			//上传对象
+			cos.putObject(putoption, function(err, data) {
+				//console.log('cos putObject data',err, data);
+			    var resdata = err || 'https://'+data.Location
+				var falt_results = {message:'putObject上传',code:200,data:resdata}
+				res.send(falt_results);  
+			});
+		})
+	});
+	
+	
+  }catch(err){
+	console.log('upcosfiles err',err)
+	var falt_results = {message:'图片上传',code:-1,err}
+	res.send(falt_results);  
+  }
+  
+  
+}); 
 
 // 向外导出路由对象
 module.exports = router;

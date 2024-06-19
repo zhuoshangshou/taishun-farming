@@ -66,6 +66,13 @@
 			}
 		},
 		{
+			"path": "pages/member/info",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"renderer":"webview"
+			}
+		},
+		{
 			"path": "pages/message/index",
 			"style": {
 				"navigationBarTitleText": "消息中心",

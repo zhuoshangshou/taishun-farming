@@ -12,16 +12,15 @@ const clients = new Set();
 	
 function generateClientId() {
 	let clientId = Math.random().toString(36).substr(2, 9);
-	console.log('clientId',clientId)
+	//console.log('clientId',clientId)
 	return clientId;
 }
    
 router.ws('/msg',async function (ws, req){
 	var {authorization} = req.headers;
-	
-	console.log('authorization',authorization)
+	//console.log('authorization',authorization)
 	var userinfo = await axios.get('http://127.0.0.1:3000/api/getmarkettea',{});
-	console.log('userRouter2',userinfo)
+	//console.log('userRouter2',userinfo)
 	// 将新连接的客户端添加到集合中
 	clients.add(ws);
 	const clientId = generateClientId();

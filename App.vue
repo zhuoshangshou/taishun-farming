@@ -1,4 +1,5 @@
 <script>
+	import storeUtils from '@/utils/storeUtils';
 	export default {
 		onLaunch: function() {
 			var env_option = {
@@ -9,10 +10,13 @@
 			console.log('APP onLaunch',env_option)
 		},
 		onShow: function() {
-			console.log('App Show')
+			//console.log('App Show')
+			storeUtils.storageStoreInit()
 		},
 		onHide: function() {
-			console.log('App Hide')
+			//console.log('App Hide')
+		},
+		methods: {
 		}
 	}
 </script>

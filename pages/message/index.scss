@@ -2,7 +2,9 @@
 	position: relative;
 	background:linear-gradient(rgba(245,245,245,1),rgba(175,223,228,1));
 	.g-page-scroll{
-		height: calc(100vh - 200rpx);
+		height: calc(100vh - 330rpx);
+		padding:28rpx;
+		box-sizing: border-box;
 		.item{
 			display: flex;;
 			margin-top: 48rpx;
@@ -15,8 +17,11 @@
 	}
 	.foot-wrap{
 		background-color: #fff;
+		border-top-left-radius: 20rpx;
+		border-top-right-radius: 20rpx;;
 		.ipt{
 			padding:20rpx;
+			height: 140rpx;
 			color: #999;
 		}
 		.btn-bar{

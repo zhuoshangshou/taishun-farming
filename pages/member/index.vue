@@ -3,20 +3,21 @@
 		<view class="page-content-box" v-if="userInfo.id">
 				<imgLoading :isMore="true" v-if="loading" />
 				<view class="info-card" >
+					<view class="info">
+						<view class="name">{{userInfo.name}}</view>
+						<view class="mobile">{{userInfo.mobile}}</view>
+					</view>
 					<view class="portrait">
-						<button open-type="chooseAvatar" class="pos-btn" @chooseavatar="handleAvatar">
-							<image :src="userInfo.portrait" mode="widthFix" show-menu-by-longpress class="pic"></image>
-						</button>
+						<image :src="userInfo.portrait" mode="widthFix" show-menu-by-longpress class="pic"></image>
 					</view>
-					<view class="fitem">
-						<input type="nickname" class="ipt" :value="userInfo.name" placeholder="请填写昵称" @blur="blurNickName" @nicknamereview="handleNicknamereview"> 
-					</view>
-					<view class="fitem">
-						<input type="text" class="ipt" v-model="userInfo.mobile" placeholder="请填写手机号"> 
-						<!-- <button open-type="getPhoneNumber" class="g-btn ipt-btn" @getPhoneNumber="handleGetMobile">获取手机号</button> -->
-					</view>
-					<view class="btn-bar">
-						<button class="g-btn" @click="updataUser">更新信息</button>
+				</view>
+				
+				<view class="menu-wrap">
+					<view class="item" v-for="(item,index) in menuList" :key="item" @click="handlePage(item.url)">
+						<view class="bar">
+							<text class="name">{{item.name}}</text>
+							<view class="pic"></view>
+						</view>
 					</view>
 				</view>
 		</view>
@@ -25,10 +26,11 @@
 </template>
 
 <script>
+	import {useStore} from 'vuex' 
 	import apiCommon from '@/api/common';
 	import gTabsBar from '@/components/gTabsBar'
 	import imgLoading from '@/components/imgLoading'
-	
+	import storeUtils from '@/utils/storeUtils';
 	export default {
 		components: {
 			gTabsBar,imgLoading
@@ -36,10 +38,17 @@
 		data() {
 			return {
 				loading:true,
-				userInfo: {}
+				userInfo: {},
+				menuList:[
+					{name:'聊天室',url:'/pages/message/index'},
+					{name:'个人中心',url:'/pages/member/info'}
+				]
 			}
 		},
 		onLoad() {
+		},
+		onShow() {
+			//console.log('App Show')
 			this.autoLogin()
 		},
 		mounted() {
@@ -48,9 +57,16 @@
 		methods: {
 			autoLogin(){
 				const that = this;
+				const store = useStore();
 				const storage_token = uni.getStorageSync('token');
+				const store_user_info = store.getters.getUserInfo;
 				if(storage_token){
-					that.pageFetch()
+					if(store_user_info){
+						this.$data.userInfo = store_user_info;
+						//console.log('store',store_user_info);
+					}
+					this.$data.loading = false;
+					console.log('已登录！');
 					return false;
 				}
 				uni.login({
@@ -60,9 +76,10 @@
 					 //console.log('登录 token！',data)
 					 if(data.token){
 						uni.setStorageSync('token',data.token)
-						that.pageFetch()
+						that.$nextTick(()=>{
+							that.pageFetch()
+						})
 					 }
-					 
 				    } else {
 				      console.log('登录失败！' + res.errMsg)
 				    }
@@ -77,40 +94,19 @@
 					//console.log('pageFetch data',data)
 					this.$data.userInfo = data;
 					this.$data.loading = false;
+					storeUtils.setStoreUserInfo(data)
 				}catch(err){
 					console.log('pageFetch err',err)
 					this.$data.loading = false;
 					//throw err;
 				}
 			},
-			handleAvatar(e){
-				const {avatarUrl} = e.detail;
-				this.$data.userInfo.portrait = avatarUrl;
-				console.log('handleAvatar',e)
-			},
-			blurNickName(e){
-				console.log('blurNickName',e)
-				const {value} = e.detail;
-				this.$data.userInfo.name = value;
-			},
-			handleNicknamereview(e){
-				console.log('handleNicknamereview',e)
-			},
-			handleGetMobile(e){
-				console.log('handleGetMobile',e)
-			},
-			async updataUser(){
-				const {userInfo} = this.$data;
-				//console.log('updataUser userInfo',userInfo)
-				const res = await apiCommon.upUserInfo(userInfo)
-				//console.log('updataUser res',res)
-				if(res.code==200){
-					uni.showToast({
-						title: '更新成功',
-						icon:'none'
-					});
-				}
+			handlePage(url){
+				uni.navigateTo({
+					url
+				})
 			}
+			
 		}
 	}
 </script>

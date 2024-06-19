@@ -7,7 +7,9 @@
 		</scroll-view>
 		<view class="foot-wrap">
 			<input class="ipt" type="textarea" v-model="msg" placeholder="请输入" />
-			<button class="g-btn" @click="handleSend">btn</button>
+			<view class="btn-bar">
+				<button class="g-btn" @click="handleSend">发送</button>
+			</view>
 		</view>
 		
 	</view>

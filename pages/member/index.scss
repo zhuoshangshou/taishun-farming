@@ -2,26 +2,13 @@
 	position: relative;
 	background:linear-gradient(rgba(245,245,245,1),rgba(175,223,228,1));
 	.page-content-box{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
+		padding:200rpx 0 140rpx;
 	}
-	.back-bar{
-		position: relative;
-		z-index: 4;
-	}
-
 	.info-card{
-		margin: auto;
-		width: 80%;
-		border-radius: 60rpx;
-		padding:80rpx 30rpx;
-		text-align: center;
-		line-height: 2;
+		display: flex;
+		padding:0 40rpx;
 		.portrait{
-			width: 80%;
+			width: 20%;
 			line-height: 0;
 			margin:auto;
 			margin-bottom: 40rpx;
@@ -32,37 +19,37 @@
 				background-color: #fff;
 			}
 		}
-		.fitem{
-			position: relative;
-			margin:40rpx 0;
-			.ipt-btn{
-				position: absolute;
-				top: 0;
-				right: 0;
-				width: auto;;
-				height: 88rpx;
-				z-index: 4;
-			}
-			
-		}
-		.pos-btn{
-			border:none;
-			padding:0;
-			line-height: 0;
-		}
-		.ipt{
-			height: 80rpx;
-			border-radius: 40rpx;
-			padding:5rpx 20rpx;
-			background-color: #fff;
-		}
-		.btn-bar{
+		.info{
 			width: 80%;
-			margin:auto;
-			margin-top: 60rpx;;
+			.name{
+				font-size: 48rpx;;
+			}
+			.mobile{
+				margin-top:24rpx;
+				font-size: 32rpx;;
+				color: #687b6e;
+			}
 		}
 	}
-	&.half{
-		height: 80vh;
+	.menu-wrap{
+		padding:40rpx 20rpx;
+		display: flex;
+		flex-wrap: wrap;
+		.item{
+			width: 50%;
+			padding:20rpx;
+			box-sizing: border-box;
+			.bar{
+				padding:30rpx;
+				border-radius: 20rpx;
+				background-color: #fff;
+			}
+			.name{
+				font-size: 32rpx;
+			}
+			.pic{
+				height: 100rpx;
+			}
+		};
 	}
 }
