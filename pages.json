@@ -64,6 +64,13 @@
 				"disableScroll":true ,// Skyline 不支持页面全局滚动
 				"navigationStyle":"custom" //Skyline 不支持原生导航栏
 			}
+		},
+		{
+			"path": "pages/message/index",
+			"style": {
+				"navigationBarTitleText": "消息中心",
+				"renderer":"webview"
+			}
 		}
 	],
 	"globalStyle": {

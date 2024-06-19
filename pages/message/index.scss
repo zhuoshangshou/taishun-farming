@@ -1,0 +1,28 @@
+.content-box{
+	position: relative;
+	background:linear-gradient(rgba(245,245,245,1),rgba(175,223,228,1));
+	.g-page-scroll{
+		height: calc(100vh - 200rpx);
+		.item{
+			display: flex;;
+			margin-top: 48rpx;
+			.wrap{
+				padding:20rpx;
+				border-radius: 10rpx;
+				background: #fff;
+			}
+		}
+	}
+	.foot-wrap{
+		background-color: #fff;
+		.ipt{
+			padding:20rpx;
+			color: #999;
+		}
+		.btn-bar{
+			padding:20rpx;
+		}
+		
+	}
+	
+}
