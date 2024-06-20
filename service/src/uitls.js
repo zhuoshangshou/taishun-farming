@@ -3,6 +3,15 @@ const MD5 = require('crypto-js/md5')
 const keyStr = '11111'
 const ivStr = CryptoJS.enc.Utf8.parse('farming'); //默认的key 偏移量
 
+//环境变量
+const restEnvInit=(NODE_ENV)=>{
+	var url = 'http://127.0.0.1:3000/api';
+	if(NODE_ENV=='production'){
+		url = 'http://36.111.172.157:3000/api'
+	}
+	return url;
+}
+
 //注册
 const register =(query,res,connection)=>{
 	//console.log('uitls register',query)
@@ -66,4 +75,4 @@ const decodeToken =(token)=>{
 	return openid;
 }
 
-module.exports = {register,creationToken,decodeToken,getUserInfo}
+module.exports = {restEnvInit,register,creationToken,decodeToken,getUserInfo}

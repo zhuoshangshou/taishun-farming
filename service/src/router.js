@@ -292,7 +292,7 @@ router.get('/getuserinfo', (req, res) => {
 	//console.log('token_str',token_openid,token_str)
 	sql = `${sql} WHERE openid='${token_openid}'`;
   }else{
-	res.send({errmsg:'未登录',code:-1});  
+	res.send({errmsg:'未登录',code:-1,headers:req.headers});  
 	return false;
   }
   console.log('getuserinfo sql',sql)

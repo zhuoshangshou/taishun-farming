@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "node src/index.js"
+    "serve": "cross-env NODE_ENV=development node src/index.js",
+	"build": "cross-env NODE_ENV=production node src/index.js"
   },
   "keywords": [],
   "author": "",

@@ -2,21 +2,25 @@
 	<view class="content-box">
 		<scroll-view class="g-page-scroll" type="list" :scroll-y="true" :show-scrollbar="false">
 			<view class="tips" v-if="!showFoot">{{tips}}</view>
-			<view class="item" v-for="(item,index) in dialogue" :key="index">
+			<view :class="['item',item.clientId?'side':'center',item.clientId==userInfo.id?'right':'']" v-for="(item,index) in dialogue" :key="index">
+				<view class="portrait" v-if="item.userinfo">
+					<image :src="item.userinfo.portrait" mode="widthFix" class="pic"></image>
+				</view>
 				<view class="wrap">{{item.msg}}</view>
 			</view>
 		</scroll-view>
 		<view class="foot-wrap" v-if="showFoot">
 			<input class="ipt" type="textarea" v-model="msg" placeholder="请输入" @confirm="handleSend" />
-			<view class="btn-bar">
+			<!-- <view class="btn-bar">
 				<button class="g-btn" @click="handleSend">发送</button>
-			</view>
+			</view> -->
 		</view>
 		
 	</view>
 </template>
 
 <script>
+	import {useStore} from 'vuex'
 	import apiCommon from '@/api/common';
 	import imgLoading from '@/components/imgLoading'
 	
@@ -29,6 +33,7 @@
 				loading:true,
 				showFoot:false,
 				socketTask: null,
+				userInfo:{},
 				dialogue:[],
 				tips:'~未登录~',
 				msg:''
@@ -38,17 +43,29 @@
 			
 		},
 		mounted() {
-			this.pageFetch()
+			this.pageInit()
 		},
 		methods: {
+			pageInit(){
+				const store = useStore();
+				var token = uni.getStorageSync('token');
+				const store_user_info = store.getters.getUserInfo;
+				
+				if(!token){
+					console.log('请登录')
+					return false;
+				}
+				//console.log('store',store_user_info,store);
+				if(store_user_info){
+					this.$data.userInfo = store_user_info;
+					//console.log('store',store_user_info);
+				}
+				this.pageFetch()
+			},
 			async pageFetch(){
 				try{
-					var token = uni.getStorageSync('token');
 					var that = this;
-					if(!token){
-						console.log('请登录')
-						return false;
-					}
+					var token = uni.getStorageSync('token');
 					var option = {
 						url: process.env.BASE_SOCKET_URL,
 						header:{
