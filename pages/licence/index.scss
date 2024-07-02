@@ -1,0 +1,29 @@
+.content-box{
+	position: relative;
+	background:linear-gradient(rgba(245,245,245,1),rgba(175,223,228,1));
+	.page-content-box{
+		padding:200rpx 30rpx 0;
+		.wrap{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			.ipt{
+				width:50rpx;
+				height:50rpx;
+				padding:10rpx;
+				border:1px solid #aaa;
+				border-radius: 10rpx;;
+				text-align: center;
+				background-color: #fff;
+				&.act{
+					border-color: #000;
+				}
+			}
+		}
+		.btn-bar{
+			margin-top:120rpx;
+		}
+		
+	}
+	
+}

@@ -78,6 +78,13 @@
 				"navigationBarTitleText": "消息中心",
 				"renderer":"webview"
 			}
+		},
+		{
+			"path": "pages/licence/index",
+			"style": {
+				"navigationBarTitleText": "车牌",
+				"renderer":"webview"
+			}
 		}
 	],
 	"globalStyle": {
