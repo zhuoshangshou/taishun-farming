@@ -1,7 +1,12 @@
 <template>
 	<view class="g-virtual-Keyboard">
-		<view :class="['keyboard',keysize]">
-			<view class="key" v-for="(item,index) in keyboard" :key="index" @click.stop="handleKey(item)">
+		<view class="keyboard subkey" v-if="subKey.length">
+			<view class="key" v-for="(item,index) in subKey" :key="index" @click="handleKey(item)">
+				<text>{{item}}</text>
+			</view>
+		</view>
+		<view :class="['keyboard',subKey.length?'notop':'']">
+			<view class="key" v-for="(item,index) in keyboard" :key="index" @click="handleKey(item)">
 				<text>{{item}}</text>
 			</view>
 		</view>
@@ -12,7 +17,7 @@
 
 export default {
   name: 'virtual Keyboard',
-  props: ['keyboard','keysize'],
+  props: ['keyboard','subKey'],
   data(){
   	return{
 		buttonStyle:{},

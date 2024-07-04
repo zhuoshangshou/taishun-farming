@@ -3,11 +3,16 @@
 	background:linear-gradient(rgba(245,245,245,1),rgba(175,223,228,1));
 	.page-content-box{
 		padding:200rpx 30rpx 0;
+		min-height: 100vh;
+		box-sizing: border-box;
 		.wrap{
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			.ipt{
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				width:50rpx;
 				height:50rpx;
 				padding:10rpx;

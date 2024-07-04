@@ -41,7 +41,8 @@
 				userInfo: {},
 				menuList:[
 					{name:'聊天室',url:'/pages/message/index'},
-					{name:'个人中心',url:'/pages/member/info'}
+					{name:'个人中心',url:'/pages/member/info'},
+					{name:'车牌登记',url:'/pages/licence/index'}
 				]
 			}
 		},

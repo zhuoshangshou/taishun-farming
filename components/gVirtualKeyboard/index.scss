@@ -12,21 +12,24 @@
 		justify-content: center;
 		flex-wrap:wrap;
 		.key{
-			margin:8rpx;
-			padding:10rpx 20rpx;
+			margin:6rpx;
+			padding:20rpx 30rpx;
 			border-radius: 10rpx;
 			background:#fff;
-			font-size: 32rpx;
+			font-size: 36rpx;
 			box-shadow: 0 4rpx rgba(0,0,0,0.1);
 			&:active{
 				background-color: #f3f3f3;
 			}
 		}
-		&.max{
+		&.subkey{
+			padding-bottom: 0rpx;
 			.key{
-				margin:10rpx;
-				font-size: 36rpx;
+				padding:20rpx 56rpx;
 			}
+		}
+		&.notop{
+			padding-top:30rpx;
 		}
 	}
 }
